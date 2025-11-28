@@ -1,0 +1,278 @@
+.floating-modal {
+  position: fixed;
+  width: 700px;
+  height: 80vh;
+  background: #fff;
+  border: 1px solid none;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: #000000;
+  user-select: none;
+  transition: box-shadow 0.2s ease;
+  z-index: 999;
+  display: grid;
+  grid-template-rows: 28px 1fr;
+}
+
+/* animation variables: --tx/--ty are set in JS as the delta from modal center to button center */
+.floating-modal {
+  transform: translate(0, 0) scale(1);
+  opacity: 1;
+  /* slightly slower, smoother entrance/exit */
+  transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 360ms ease;
+}
+.floating-modal.anim-enter-start {
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
+  opacity: 0;
+}
+.floating-modal.anim-in {
+  transform: translate(0, 0) scale(1);
+  opacity: 1;
+}
+.floating-modal.anim-out {
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
+  opacity: 0;
+}
+
+.floating-modal:hover {
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #eef6f8;
+  border-radius: 10px 10px 0 0;
+  height: 28px;
+}
+
+.modal-header p {
+  flex: 1;
+  font-size: 15px;
+  height: 100%;
+  margin-top: 1.5%;
+}
+
+.modos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  width: 20%;
+}
+
+.mods1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+}
+
+.mods1:hover {
+  background-color: rgb(238, 238, 238);
+  cursor: pointer;
+}
+.mods2:hover {
+  background-color: rgb(238, 238, 238);
+  cursor: pointer;
+}
+
+.mods2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modsc {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0, 3s ease;
+  border-radius: 0 10px 0 0;
+  cursor: pointer;
+}
+.modsc:hover svg path {
+  fill: white;
+}
+
+.modsc:hover {
+  background-color: rgb(255, 93, 93);
+}
+.modsc:hover svg {
+  color: white;
+}
+
+.close {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modal-content {
+  padding: 15px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  cursor: default;
+  overflow-y: auto;
+  max-height: calc(100% - 28px);
+}
+
+.arquivosimg1 {
+  padding-left: 10px;
+  height: 20px;
+  width: auto;
+}
+
+.modal-content button {
+  background: #5a5aff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.modal-content button:hover {
+  opacity: 0.85;
+}
+
+.minimizar {
+  height: 50%;
+  width: 21%;
+  border-bottom: 1px solid black;
+}
+.max {
+  height: 31%;
+  width: 20%;
+  border: 1.5px solid black;
+  border-radius: 1px;
+}
+
+.c1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px 0px 0 30px;
+}
+
+.c2 {
+  border-radius: 0px 30px 30px 0px;
+  padding-left: 10px;
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 10px;
+}
+
+.c2 h1 {
+  font-size: 22px;
+  margin-top: 10px;
+  color: white;
+  padding-bottom: 5px;
+}
+
+.c2 p {
+  font-size: 13px;
+  color: white;
+}
+
+.criptohive {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  min-height: 130px;
+}
+
+#alura {
+  background-color: #7e7f81;
+}
+#cripto {
+  background-color: #0a1c3a;
+}
+#login {
+  background-color: #362056;
+}
+
+.criptohive:hover {
+  scale: 1.009;
+}
+
+.clogo {
+  height: 100px;
+  width: auto;
+  gap: 10px;
+}
+.alogo {
+  height: 80px;
+  width: auto;
+  gap: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.clogo:hover {
+  scale: 1.05;
+}
+.alogo:hover {
+  scale: 1.05;
+}
+
+.ctext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cbtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btngit {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  border: 2px solid white;
+  padding: 6px;
+  width: 50%;
+  gap: 10px;
+}
+
+.btngit:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.btngit:hover .githubimg2 {
+  fill: #000000;
+}
+
+.btngit:hover p {
+  color: #000000;
+}
+
+.githubimg2 {
+  height: 20px;
+  width: auto;
+  fill: white;
+}

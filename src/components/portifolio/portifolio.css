@@ -1,0 +1,148 @@
+.container {
+  height: 100dvh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 50px;
+}
+
+.bar {
+  background: linear-gradient(to right, #fff, #f1fdfe, #f1fdfe, #fff);
+}
+
+.midle {
+  margin-left: 34%;
+  height: 100%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.winimg {
+  height: 25px;
+  width: auto;
+}
+
+#win {
+  margin-right: -5%;
+}
+
+.divw {
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.divw:active {
+  transform: scale(0.8);
+}
+
+.divw:hover {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.arquivosimg {
+  height: 25px;
+  width: auto;
+}
+.chromeimg { 
+  height: 25px;
+  width: auto;
+}
+.set { 
+  height: 31px;
+  width: auto;
+}
+
+.githubimg {
+  height: 25px;
+  width: auto;
+}
+
+.icon-search {
+  position: relative;
+  width: auto;
+  right: -7%;
+  z-index: 99;
+  font-size: 17px;
+}
+.container input {
+  border: none;
+  outline: none;
+}
+
+.inppes {
+  padding: 6px 30px;
+  border-radius: 50px;
+  border: 0px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.inppes:hover {
+  background-color: #f6fffe;
+}
+
+.inppes::placeholder {
+  padding-left: 7px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.marquivos {
+  display: none;
+  position: absolute;
+  left: 270px;
+  top: -40px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1001;
+}
+
+.msobre {
+  display: none;
+  position: absolute;
+  left: 310px;
+  top: -40px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1001;
+}
+.mgithub {
+  display: none;
+  position: absolute;
+  left: 415px;
+  top: -40px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1001;
+}
+.cer {
+  display: none;
+  position: absolute;
+  left: 360px;
+  top: -40px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1001;
+}

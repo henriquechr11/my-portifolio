@@ -1,0 +1,40 @@
+.certificados {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.certificados div {
+  margin: 10px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+  color: #0f172a;
+  align-items: center;
+  text-align: center;
+}
+
+.certificados div:hover {
+  box-shadow: 0 12px 36px rgba(16, 24, 40, 0.1);
+  scale: 1.01;
+}
+
+/* animation variables for floating modals */
+.floating-modal {
+  transform: translate(0, 0) scale(1);
+  opacity: 1;
+  /* slightly slower, smoother entrance/exit */
+  transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 360ms ease;
+}
+.floating-modal.anim-enter-start {
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
+  opacity: 0;
+}
+.floating-modal.anim-in {
+  transform: translate(0, 0) scale(1);
+  opacity: 1;
+}
+.floating-modal.anim-out {
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
+  opacity: 0;
+}

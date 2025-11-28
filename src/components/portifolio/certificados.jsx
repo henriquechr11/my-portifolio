@@ -5,9 +5,14 @@ import chromeImg from "../../assets/chrome.png";
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [pos, setPos] = useState({ x: 100, y: 100 });
+  const [pos, setPos] = useState({ x: 700, y: 100 });
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [closing, setClosing] = useState(false);
+  const [zIndex, setZIndex] = useState(1);
+
+  const handleFocus = () => {
+    setZIndex(1000); // bring this modal to front
+  };
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -73,11 +78,13 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
       ref={modalRef}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
+      onMouseDown={handleFocus}
       className="floating-modal"
       style={{
         top: pos.y,
         left: pos.x,
         cursor: isDragging ? "grabbing" : "grab",
+        zIndex: zIndex,
       }}
       id="flutuante"
     >

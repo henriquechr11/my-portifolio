@@ -5,9 +5,14 @@ import config from "../../assets/settings.png";
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [pos, setPos] = useState({ x: 600, y: 100 });
+  const [pos, setPos] = useState({ x: 400, y: 100 });
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [closing, setClosing] = useState(false);
+  const [zIndex, setZIndex] = useState(1);
+
+  const handleFocus = () => {
+    setZIndex(1000); // bring this modal to front
+  };
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -57,7 +62,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
     const mx = rect.left + rect.width / 2;
     const my = rect.top + rect.height / 2;
     const cx = window.innerWidth / 2;
-    // target vertically near the bottom center 
+    // target vertically near the bottom center
     const cy = window.innerHeight * 0.88;
     const dx = cx - mx;
     const dy = cy - my;
@@ -73,11 +78,13 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
       ref={modalRef}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
+      onMouseDown={handleFocus}
       className="floating-modal"
       style={{
         top: pos.y,
         left: pos.x,
         cursor: isDragging ? "grabbing" : "grab",
+        zIndex: zIndex,
       }}
       id="flutuante"
     >

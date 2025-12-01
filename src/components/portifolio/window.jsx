@@ -4,6 +4,7 @@ import arquivosImg from "../../assets/arquivos.png";
 import criptohivelogo from "../../assets/logo.png";
 import aluraimg from "../../assets/alura.jpg";
 import loginimg from "../../assets/login.png";
+import users from "../../assets/users.png";
 import { FaGithub, FaPlay } from "react-icons/fa";
 
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
@@ -254,9 +255,9 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
           </div>
         </div>
         {/* 4 projeto---------------------------------------------------------------------------------------*/}
-        <div className="criptohive" id="login">
+        <div className="criptohive" id="appes">
           <div className="c1">
-            <img className="alogo" src={loginimg} alt="" />
+            <img className="alogo" src={users} alt="" />
           </div>
           <div className="c2">
             <div className="ctext">
@@ -269,7 +270,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
             </div>
             <div className="cbtn">
               <a
-                href="https://github.com/henriquechr11/login-page"
+                href="https://github.com/henriquechr11/projeto-app-escola"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-link"
@@ -289,7 +290,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
           </div>
         </div>
         {/* 5 projeto---------------------------------------------------------------------------------------*/}
-        <div className="criptohive" id="login">
+        {/* <div className="criptohive" id="login">
           <div className="c1">
             <img className="alogo" src={loginimg} alt="" />
           </div>
@@ -327,7 +328,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

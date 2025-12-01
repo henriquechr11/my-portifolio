@@ -188,7 +188,7 @@
   grid-template-columns: 20% 1fr;
   border-radius: 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  min-height: 130px;
+  min-height: 150px;
 }
 
 #alura {
@@ -199,6 +199,10 @@
 }
 #login {
   background-color: #362056;
+}
+
+#appes{
+  background-color: #0F3D2E;
 }
 
 .criptohive:hover {

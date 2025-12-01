@@ -1,6 +1,12 @@
 import React, { useState, useRef } from "react";
 import "./certificados.css";
 import chromeImg from "../../assets/chrome.png";
+import ccisco from "../../assets/cisco.png";
+import calura from "../../assets/python.png";
+import castro from "../../assets/castro.jpg";
+import cbest from "../../assets/thebest.jpg";
+import c19 from "../../assets/canguru19.jpg";
+import c22 from "../../assets/canguru22.jpg";
 
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
@@ -124,36 +130,36 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
 
         <div className="certificados">
           <div>
-            <p>2024-Certificado Cotemig The Best of The class 2º etapa</p>
-            <img src="" alt="" />
+            <img className="imgcer1" id="rotate" src={cbest} alt="" />
+            <p className="txte">2024-Certificado Cotemig The Best of The class 2º etapa</p>
           </div>
 
           <div>
+            <img  className="imgcer" src={c22} alt=""  />
             <p>2022- Medalha Bronze olimpíadas de Matemática Canguru </p>
-            <img src="" alt="" />
           </div>
 
           <div>
+            <img className="imgcer" src={c19} alt="" />
             <p>2019- Medalha Bronze olimpíadas de Matemática Canguru</p>
-            <img src="" alt="" />
           </div>
 
           <div>
+            <img className="imgcer" src={calura} alt="" />
             <p>2025-Certificado ALURA imersão dados com python</p>
-            <img src="" alt="" />
           </div>
 
           <div>
-            <p>
+            <img id="rotate"  className="imgcer1" src={castro} alt="" />
+            <p className="txte">
               2022- certificado olimpíada Brasileira de Astronomia e
               Astronáutica
             </p>
-            <img src="" alt="" />
           </div>
 
           <div>
+            <img className="imgcer" src={ccisco} alt="" />
             <p>2025-Certificado CISCO fundamentos do hardware do computador</p>
-            <img src="" alt="" />
           </div>
         </div>
       </div>

@@ -12,6 +12,9 @@
   color: #0f172a;
   align-items: center;
   text-align: center;
+  height: 400px;
+  width: auto;
+
 }
 
 .certificados div:hover {
@@ -37,4 +40,30 @@
 .floating-modal.anim-out {
   transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
   opacity: 0;
+}
+
+.imgcer {
+  height: 90%;
+  width: auto;
+  margin-bottom: 2%;
+}
+.imgcer1 {
+  height: 120%;
+  width: auto;
+  margin-top: -10%;
+}
+.txte{
+  margin-top: -10%;
+}
+
+
+.certificados div p{
+  font-size: 16px;
+}
+#rotate{
+  transform: rotate(-90deg);
+}
+
+.modal-content h1{
+  text-align: center;
 }

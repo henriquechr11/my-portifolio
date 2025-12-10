@@ -1,3 +1,17 @@
+.floating-modal {
+  position: fixed;
+  width: 700px;
+  height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: #000000;
+  user-select: none;
+  display: grid;
+  grid-template-rows: 28px 1fr;
+  overflow: hidden;
+}
+
 .me {
   display: grid;
   grid-template-columns: 1fr 220px;

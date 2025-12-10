@@ -7,6 +7,7 @@ import castro from "../../assets/castro.jpg";
 import cbest from "../../assets/thebest.jpg";
 import c19 from "../../assets/canguru19.jpg";
 import c22 from "../../assets/canguru22.jpg";
+import { bringToFront } from "./modalZ";
 
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
@@ -15,9 +16,8 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [closing, setClosing] = useState(false);
   const [zIndex, setZIndex] = useState(1);
-
   const handleFocus = () => {
-    setZIndex(1000); // bring this modal to front
+    setZIndex(bringToFront());
   };
 
   const handleMouseDown = (e) => {
@@ -131,11 +131,13 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
         <div className="certificados">
           <div>
             <img className="imgcer1" id="rotate" src={cbest} alt="" />
-            <p className="txte">2024-Certificado Cotemig The Best of The class 2º etapa</p>
+            <p className="txte">
+              2024-Certificado Cotemig The Best of The class 2º etapa
+            </p>
           </div>
 
           <div>
-            <img  className="imgcer" src={c22} alt=""  />
+            <img className="imgcer" src={c22} alt="" />
             <p>2022- Medalha Bronze olimpíadas de Matemática Canguru </p>
           </div>
 
@@ -150,7 +152,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
           </div>
 
           <div>
-            <img id="rotate"  className="imgcer1" src={castro} alt="" />
+            <img id="rotate" className="imgcer1" src={castro} alt="" />
             <p className="txte">
               2022- certificado olimpíada Brasileira de Astronomia e
               Astronáutica

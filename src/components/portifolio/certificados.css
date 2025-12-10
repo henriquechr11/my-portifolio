@@ -14,7 +14,6 @@
   text-align: center;
   height: 400px;
   width: auto;
-
 }
 
 .certificados div:hover {
@@ -24,10 +23,20 @@
 
 /* animation variables for floating modals */
 .floating-modal {
+  position: fixed;
   transform: translate(0, 0) scale(1);
   opacity: 1;
   /* slightly slower, smoother entrance/exit */
   transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 360ms ease;
+  width: 700px;
+  height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: #000000;
+  user-select: none;
+  display: grid;
+  grid-template-rows: 28px 1fr;
 }
 .floating-modal.anim-enter-start {
   transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
@@ -52,18 +61,17 @@
   width: auto;
   margin-top: -10%;
 }
-.txte{
+.txte {
   margin-top: -10%;
 }
 
-
-.certificados div p{
+.certificados div p {
   font-size: 16px;
 }
-#rotate{
+#rotate {
   transform: rotate(-90deg);
 }
 
-.modal-content h1{
+.modal-content h1 {
   text-align: center;
 }

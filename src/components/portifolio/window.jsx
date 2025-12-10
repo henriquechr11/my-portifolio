@@ -6,6 +6,7 @@ import aluraimg from "../../assets/alura.jpg";
 import loginimg from "../../assets/login.png";
 import users from "../../assets/users.png";
 import { FaGithub, FaPlay } from "react-icons/fa";
+import { bringToFront } from "./modalZ";
 
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
@@ -14,9 +15,8 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const [pos, setPos] = useState({ x: 100, y: 100 });
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [zIndex, setZIndex] = useState(1);
-
   const handleFocus = () => {
-    setZIndex(1000); // bring this modal to front
+    setZIndex(bringToFront());
   };
 
   const handleMouseDown = (e) => {

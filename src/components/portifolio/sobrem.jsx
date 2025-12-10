@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./sobrem.css";
 import config from "../../assets/settings.png";
+import { bringToFront } from "./modalZ";
 
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
@@ -9,9 +10,8 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [closing, setClosing] = useState(false);
   const [zIndex, setZIndex] = useState(1);
-
   const handleFocus = () => {
-    setZIndex(1000); // bring this modal to front
+    setZIndex(bringToFront());
   };
 
   const handleMouseDown = (e) => {

@@ -149,6 +149,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
               <div>C#</div>
               <div>MySql</div>
               <div>Git</div>
+              <div>API</div>
             </div>
           </div>
         </div>

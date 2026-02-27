@@ -37,20 +37,26 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   React.useLayoutEffect(() => {
     const el = modalRef.current;
     if (!el || !origin) return;
-    el.style.setProperty("--tx", `0px`);
-    el.style.setProperty("--ty", `0px`);
-    const rect = el.getBoundingClientRect();
-    const mx = rect.left + rect.width / 2;
-    const my = rect.top + rect.height / 2;
-    const dx = origin.x - mx;
-    const dy = origin.y - my;
-    el.style.setProperty("--tx", `${dx}px`);
-    el.style.setProperty("--ty", `${dy}px`);
-    el.classList.add("anim-enter-start");
-    requestAnimationFrame(() => {
-      el.classList.remove("anim-enter-start");
-      el.classList.add("anim-in");
-    });
+    // hide modal initially
+    el.style.opacity = "0";
+    const timer = setTimeout(() => {
+      el.style.opacity = "";
+      el.style.setProperty("--tx", `0px`);
+      el.style.setProperty("--ty", `0px`);
+      const rect = el.getBoundingClientRect();
+      const mx = rect.left + rect.width / 2;
+      const my = rect.top + rect.height / 2;
+      const dx = origin.x - mx;
+      const dy = origin.y - my;
+      el.style.setProperty("--tx", `${dx}px`);
+      el.style.setProperty("--ty", `${dy}px`);
+      el.classList.add("anim-enter-start");
+      requestAnimationFrame(() => {
+        el.classList.remove("anim-enter-start");
+        el.classList.add("anim-in");
+      });
+    }, 500);
+    return () => clearTimeout(timer);
   }, [origin]);
 
   const handleRequestClose = () => {

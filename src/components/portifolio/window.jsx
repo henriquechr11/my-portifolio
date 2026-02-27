@@ -1,20 +1,167 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./window.css";
 import arquivosImg from "../../assets/arquivos.png";
 import criptohivelogo from "../../assets/logo.png";
 import aluraimg from "../../assets/alura.jpg";
 import loginimg from "../../assets/login.png";
 import users from "../../assets/users.png";
-import { FaGithub, FaPlay } from "react-icons/fa";
+import { FaGithub, FaPlay, FaExternalLinkAlt } from "react-icons/fa";
 import { bringToFront } from "./modalZ";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 
+/* ── project data ─────────────────────────────────────────── */
+const projects = [
+  {
+    id: 1,
+    title: "CriptoHive",
+    description:
+      "Plataforma de rastreamento de criptomoedas em tempo real com gráficos interativos e alertas personalizados.",
+    tags: ["React", "API", "Charts"],
+    image: null,
+    logo: "criptohive",
+    color: "#0a1c3a",
+    github: "https://github.com/henriquechr11",
+    demo: "https://cripto-hive.vercel.app/",
+  },
+  {
+    id: 2,
+    title: "Alura Studies",
+    description:
+      "Aplicação de gerenciamento de estudos com cronômetro Pomodoro e controle de tarefas diárias.",
+    tags: ["React", "TypeScript", "CSS"],
+    image: null,
+    logo: "alura",
+    color: "#7e7f81",
+    github: "https://github.com/henriquechr11",
+    demo: "#",
+  },
+  {
+    id: 3,
+    title: "Login System",
+    description:
+      "Sistema de autenticação completo com registro, login e recuperação de senha com JWT.",
+    tags: ["Node.js", "JWT", "MongoDB"],
+    image: null,
+    logo: "login",
+    color: "#362056",
+    github: "https://github.com/henriquechr11",
+    demo: "#",
+  },
+  {
+    id: 4,
+    title: "User Manager",
+    description:
+      "Dashboard de gerenciamento de usuários com CRUD completo, filtros e paginação avançada.",
+    tags: ["React", "Node.js", "SQL"],
+    image: null,
+    logo: "users",
+    color: "#0f3d2e",
+    github: "https://github.com/henriquechr11",
+    demo: "#",
+  },
+];
+
+const logoMap = {
+  criptohive: criptohivelogo,
+  alura: aluraimg,
+  login: loginimg,
+  users: users,
+};
+
+/* ── framer variants ──────────────────────────────────────── */
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.13, delayChildren: 0.2 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 60, scale: 0.92 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 120, damping: 14 },
+  },
+};
+
+const tagVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.07, duration: 0.3 },
+  }),
+};
+
+/* ── 3D tilt card wrapper ─────────────────────────────────── */
+function TiltCard({ children, project }) {
+  const ref = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [3, -3]), {
+    stiffness: 200,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-3, 3]), {
+    stiffness: 200,
+    damping: 20,
+  });
+
+  const handleMouse = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const resetMouse = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      className="proj-card"
+      variants={cardVariants}
+      onMouseMove={handleMouse}
+      onMouseLeave={resetMouse}
+      style={{
+        rotateX,
+        rotateY,
+        transformPerspective: 800,
+        "--accent": project.color,
+      }}
+      whileHover={{ scale: 1.012 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ── main component ───────────────────────────────────────── */
 export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   const modalRef = useRef(null);
+  const scrollRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [pos, setPos] = useState({ x: 100, y: 100 });
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [zIndex, setZIndex] = useState(1);
+  const [hoveredId, setHoveredId] = useState(null);
+
+  const { scrollYProgress } = useScroll({ container: scrollRef });
+  const headerY = useTransform(scrollYProgress, [0, 0.3], [0, -20]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+
   const handleFocus = () => {
     setZIndex(bringToFront());
   };
@@ -39,29 +186,34 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
 
   const handleMouseUp = () => setIsDragging(false);
 
-  // animation: compute delta from modal center to origin and run enter animation
+  // animation: compute delta from modal center to origin and run enter animation with 1s delay
   React.useLayoutEffect(() => {
     const el = modalRef.current;
     if (!el || !origin) return;
-    // ensure vars default
-    el.style.setProperty("--tx", `0px`);
-    el.style.setProperty("--ty", `0px`);
-    // force layout so bounding rect is correct
-    const rect = el.getBoundingClientRect();
-    const mx = rect.left + rect.width / 2;
-    const my = rect.top + rect.height / 2;
-    const dx = origin.x - mx;
-    const dy = origin.y - my;
-    el.style.setProperty("--tx", `${dx}px`);
-    el.style.setProperty("--ty", `${dy}px`);
-    // start state
-    el.classList.add("anim-enter-start");
-    // animate next frame
-    requestAnimationFrame(() => {
-      el.classList.remove("anim-enter-start");
-      el.classList.add("anim-in");
-    });
-    return () => {};
+    // hide modal initially
+    el.style.opacity = "0";
+    const timer = setTimeout(() => {
+      el.style.opacity = "";
+      // ensure vars default
+      el.style.setProperty("--tx", `0px`);
+      el.style.setProperty("--ty", `0px`);
+      // force layout so bounding rect is correct
+      const rect = el.getBoundingClientRect();
+      const mx = rect.left + rect.width / 2;
+      const my = rect.top + rect.height / 2;
+      const dx = origin.x - mx;
+      const dy = origin.y - my;
+      el.style.setProperty("--tx", `${dx}px`);
+      el.style.setProperty("--ty", `${dy}px`);
+      // start state
+      el.classList.add("anim-enter-start");
+      // animate next frame
+      requestAnimationFrame(() => {
+        el.classList.remove("anim-enter-start");
+        el.classList.add("anim-in");
+      });
+    }, 500);
+    return () => clearTimeout(timer);
   }, [origin]);
 
   const handleRequestClose = () => {
@@ -86,250 +238,153 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
   };
 
   return (
-    <div
-      ref={modalRef}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseDown={handleFocus}
-      className="floating-modal"
-      style={{
-        top: pos.y,
-        left: pos.x,
-        cursor: isDragging ? "grabbing" : "grab",
-        zIndex: zIndex,
-      }}
-      id="flutuante"
-    >
-      <div className="modal-header" onMouseDown={handleMouseDown}>
-        <img src={arquivosImg} alt="Arquivos" className="arquivosimg1" />
-        <p>Meus Projetos</p>
-        <div className="modos">
-          <div className="mods1">
-            <div className="minimizar"></div>
+    <>
+      {/* Google Fonts */}
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');`}</style>
+
+      <div
+        ref={modalRef}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseDown={handleFocus}
+        className="floating-modal"
+        style={{
+          top: pos.y,
+          left: pos.x,
+          cursor: isDragging ? "grabbing" : "grab",
+          zIndex: zIndex,
+        }}
+        id="flutuante"
+      >
+        <div className="modal-header" onMouseDown={handleMouseDown}>
+          <img src={arquivosImg} alt="Arquivos" className="arquivosimg1" />
+          <p>Meus Projetos</p>
+          <div className="modos">
+            <div className="mods1">
+              <div className="minimizar"></div>
+            </div>
+            <div className="mods2">
+              <div className="max"></div>
+            </div>
+            <div className="modsc" onClick={handleRequestClose}>
+              {" "}
+              <svg
+                width="22px"
+                height="22px"
+                className="close"
+                viewBox="0 0 32 32"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <g id="icomoon-ignore"></g>
+                <path
+                  d="M10.722 9.969l-0.754 0.754 5.278 5.278-5.253 5.253 0.754 0.754 5.253-5.253 5.253 5.253 0.754-0.754-5.253-5.253 5.278-5.278-0.754-0.754-5.278 5.278z"
+                  fill="#000000"
+                ></path>
+              </svg>
+            </div>
           </div>
-          <div className="mods2">
-            <div className="max"></div>
-          </div>
-          <div className="modsc" onClick={handleRequestClose}>
-            {" "}
-            <svg
-              width="22px"
-              height="22px"
-              className="close"
-              viewBox="0 0 32 32"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+        </div>
+
+        <div className="modal-content proj-page" ref={scrollRef}>
+          {/* ── Hero header ─────────────────────────────────── */}
+          <motion.div className="proj-hero">
+            <motion.h2
+              className="proj-hero-title"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <g id="icomoon-ignore"></g>
-              <path
-                d="M10.722 9.969l-0.754 0.754 5.278 5.278-5.253 5.253 0.754 0.754 5.253-5.253 5.253 5.253 0.754-0.754-5.253-5.253 5.278-5.278-0.754-0.754-5.278 5.278z"
-                fill="#000000"
-              ></path>
-            </svg>
-          </div>
-        </div>
-      </div>
+              projetos
+            </motion.h2>
+          </motion.div>
 
-      <div className="modal-content">
-        <div className="criptohive" id="cripto">
-          <div className="c1">
-            <img className="clogo" src={criptohivelogo} alt="" />
-          </div>
-          <div className="c2">
-            <div className="ctext">
-              <h1>Cripto Hive</h1>
-              <p>
-                Site que acompanha em tempo real os preços das principais
-                criptomoedas e sua volatilidade no mercado. Utiliza a API
-                Coingecko Phyton e Flask
-              </p>
-            </div>
-            <div className="cbtn">
-              <a
-                href="https://github.com/henriquechr11/Cripto-Hive"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaGithub className="githubimg2" />
-                  <p>GitHub</p>
-                </div>
-              </a>
-              <a
-                href="https://cripto-hive.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaPlay className="githubimg2" />
-                  <p>Demo</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+          {/* ── Project cards ───────────────────────────────── */}
+          <motion.div
+            className="proj-grid"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {projects.map((proj) => (
+              <TiltCard key={proj.id} project={proj}>
+                {/* Accent top bar */}
+                <motion.div
+                  className="proj-card-accent"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
 
-        {/* 2 projeto---------------------------------------------------------------------------------------*/}
-        <div className="criptohive" id="alura">
-          <div className="c1">
-            <img className="alogo" src={aluraimg} alt="" />
-          </div>
-          <div className="c2">
-            <div className="ctext">
-              <h1>Jobs Graphics</h1>
-              <p>
-                Site com gráficos interativos e filtros para análise de dados do
-                mercado de trabalho em TI. Visualize tendências, salários e
-                áreas mais requisitadas de forma rápida. Utiliza Phyton e
-                Streamlit
-              </p>
-            </div>
-            <div className="cbtn">
-              <a
-                href="https://github.com/henriquechr11/Jobs_graphics"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaGithub className="githubimg2" />
-                  <p>GitHub</p>
+                {/* Logo + shimmer */}
+                <div className="proj-card-logo-wrap">
+                  <motion.div
+                    className="proj-card-shimmer"
+                    animate={{
+                      x: ["-100%", "200%"],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <img
+                    src={logoMap[proj.logo]}
+                    alt={proj.title}
+                    className="proj-card-logo"
+                  />
                 </div>
-              </a>
-              <a
-                href="https://imersao-alura-python-henrique.streamlit.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaPlay className="githubimg2" />
-                  <p>Demo</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
 
-        {/* 3 projeto---------------------------------------------------------------------------------------*/}
-        <div className="criptohive" id="login">
-          <div className="c1">
-            <img className="alogo" src={loginimg} alt="" />
-          </div>
-          <div className="c2">
-            <div className="ctext">
-              <h1>Login Page</h1>
-              <p>
-                Site simples de login A interface é objetiva, com campos de
-                email e senha para autenticação imediata. Meus primeiros passos
-                com React.
-              </p>
-            </div>
-            <div className="cbtn">
-              <a
-                href="https://github.com/henriquechr11/login-page"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaGithub className="githubimg2" />
-                  <p>GitHub</p>
+                {/* Content */}
+                <div className="proj-card-body">
+                  <h3 className="proj-card-title">{proj.title}</h3>
+                  <p className="proj-card-desc">{proj.description}</p>
+
+                  {/* Tags */}
+                  <div className="proj-card-tags">
+                    {proj.tags.map((tag, i) => (
+                      <motion.span
+                        key={tag}
+                        className="proj-tag"
+                        custom={i}
+                        variants={tagVariants}
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-              </a>
-              <a
-                href="https://login-page-iota-seven.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaPlay className="githubimg2" />
-                  <p>Demo</p>
+
+                {/* Actions */}
+                <div className="proj-card-actions">
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="proj-btn proj-btn-github"
+                  >
+                    <FaGithub /> Code
+                  </a>
+                  <a
+                    href={proj.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="proj-btn proj-btn-demo"
+                  >
+                    <FaExternalLinkAlt /> Demo
+                  </a>
                 </div>
-              </a>
-            </div>
-          </div>
+
+                {/* Hover glow */}
+                <div className="proj-card-glow" />
+              </TiltCard>
+            ))}
+          </motion.div>
         </div>
-        {/* 4 projeto---------------------------------------------------------------------------------------*/}
-        <div className="criptohive" id="appes">
-          <div className="c1">
-            <img className="alogo" src={users} alt="" />
-          </div>
-          <div className="c2">
-            <div className="ctext">
-              <h1>student storage</h1>
-              <p>
-                Programa de armazenamento de dados de alunos. Permite aos
-                usuários salvar, editar e excluir informações de forma
-                organizada. Utiliza C# e MySql
-              </p>
-            </div>
-            <div className="cbtn">
-              <a
-                href="https://github.com/henriquechr11/projeto-app-escola"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaGithub className="githubimg2" />
-                  <p>GitHub</p>
-                </div>
-              </a>
-              <a
-                href="https://login-page-iota-seven.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              ></a>
-            </div>
-          </div>
-        </div>
-        {/* 5 projeto---------------------------------------------------------------------------------------*/}
-        {/* <div className="criptohive" id="login">
-          <div className="c1">
-            <img className="alogo" src={loginimg} alt="" />
-          </div>
-          <div className="c2">
-            <div className="ctext">
-              <h1>Login Page</h1>
-              <p>
-                Site simples de login A interface é objetiva, com campos de
-                email e senha para autenticação imediata. Meus primeiros passos
-                com React.
-              </p>
-            </div>
-            <div className="cbtn">
-              <a
-                href="https://github.com/henriquechr11/login-page"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaGithub className="githubimg2" />
-                  <p>GitHub</p>
-                </div>
-              </a>
-              <a
-                href="https://login-page-iota-seven.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-link"
-              >
-                <div className="btngit">
-                  <FaPlay className="githubimg2" />
-                  <p>Demo</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div> */}
-      </div>
-    </div>
+      </div >
+    </>
   );
 }

@@ -20,14 +20,17 @@
   /* slightly slower, smoother entrance/exit */
   transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 360ms ease;
 }
+
 .floating-modal.anim-enter-start {
   transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
   opacity: 0;
 }
+
 .floating-modal.anim-in {
   transform: translate(0, 0) scale(1);
   opacity: 1;
 }
+
 .floating-modal.anim-out {
   transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.18);
   opacity: 0;
@@ -72,6 +75,7 @@
   background-color: rgb(238, 238, 238);
   cursor: pointer;
 }
+
 .mods2:hover {
   background-color: rgb(238, 238, 238);
   cursor: pointer;
@@ -84,6 +88,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .modsc {
   width: 100%;
   height: 100%;
@@ -94,6 +99,7 @@
   border-radius: 0 10px 0 0;
   cursor: pointer;
 }
+
 .modsc:hover svg path {
   fill: white;
 }
@@ -101,6 +107,7 @@
 .modsc:hover {
   background-color: rgb(255, 93, 93);
 }
+
 .modsc:hover svg {
   color: white;
 }
@@ -147,6 +154,7 @@
   width: 21%;
   border-bottom: 1px solid black;
 }
+
 .max {
   height: 31%;
   width: 20%;
@@ -193,9 +201,11 @@
 #alura {
   background-color: #7e7f81;
 }
+
 #cripto {
   background-color: #0a1c3a;
 }
+
 #login {
   background-color: #362056;
 }
@@ -213,6 +223,7 @@
   width: auto;
   gap: 10px;
 }
+
 .alogo {
   height: 80px;
   width: auto;
@@ -220,9 +231,11 @@
   border-radius: 10px;
   margin-top: 10px;
 }
+
 .clogo:hover {
   scale: 1.05;
 }
+
 .alogo:hover {
   scale: 1.05;
 }
@@ -278,4 +291,243 @@
   height: 20px;
   width: auto;
   fill: white;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PROJECT PAGE – white palette with black & blue accents
+   ════════════════════════════════════════════════════════════ */
+
+.proj-page {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(165deg, #ffffff 0%, #f0f4f8 50%, #e8edf5 100%);
+  position: relative;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* custom scrollbar */
+.proj-page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.proj-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.proj-page::-webkit-scrollbar-thumb {
+  background: rgba(30, 64, 175, 0.25);
+  border-radius: 999px;
+}
+
+.proj-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 64, 175, 0.45);
+}
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.proj-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 20px;
+}
+
+.proj-hero-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: #000000;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+}
+
+/* ── Card grid ─────────────────────────────────────────────── */
+.proj-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 4px 24px;
+}
+
+/* ── Card ──────────────────────────────────────────────────── */
+.proj-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(30, 64, 175, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(30, 64, 175, 0.06);
+  backdrop-filter: blur(12px);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  cursor: default;
+  will-change: transform;
+}
+
+.proj-card:hover {
+  border-color: rgba(30, 64, 175, 0.25);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 32px rgba(30, 64, 175, 0.12);
+}
+
+/* Accent top bar – uses CSS var --accent set inline */
+.proj-card-accent {
+  height: 3px;
+  background: linear-gradient(90deg,
+      var(--accent, #1e40af),
+      #3b82f6,
+      var(--accent, #1e40af));
+  transform-origin: left;
+}
+
+/* ── Logo area ─────────────────────────────────────────────── */
+.proj-card-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px 8px;
+  overflow: hidden;
+}
+
+.proj-card-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+  transition: transform 0.35s ease;
+}
+
+.proj-card:hover .proj-card-logo {
+  transform: scale(1.04) translateY(-2px);
+}
+
+/* Shimmer sweep */
+.proj-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(59, 130, 246, 0.08),
+      transparent);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Card body ─────────────────────────────────────────────── */
+.proj-card-body {
+  padding: 8px 20px 12px;
+}
+
+.proj-card-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.proj-card-desc {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+/* ── Tags ──────────────────────────────────────────────────── */
+.proj-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.proj-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  color: #1e40af;
+  border: 1px solid rgba(30, 64, 175, 0.12);
+  letter-spacing: 0.3px;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.proj-tag:hover {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  transform: translateY(-1px);
+}
+
+/* ── Actions ───────────────────────────────────────────────── */
+.proj-card-actions {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px 16px;
+}
+
+.proj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}
+
+.proj-btn-github {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #0f172a;
+}
+
+.proj-btn-github:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+}
+
+.proj-btn-demo {
+  background: transparent;
+  color: #1e40af;
+  border: 1.5px solid #1e40af;
+}
+
+.proj-btn-demo:hover {
+  background: #1e40af;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+/* ── Hover glow ────────────────────────────────────────────── */
+.proj-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 0%,
+      rgba(59, 130, 246, 0.08) 0%,
+      transparent 70%);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.proj-card:hover .proj-card-glow {
+  opacity: 1;
 }

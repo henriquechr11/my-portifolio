@@ -289,15 +289,32 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
 
         <div className="modal-content proj-page" ref={scrollRef}>
           {/* ── Hero header ─────────────────────────────────── */}
-          <motion.div className="proj-hero">
-            <motion.h2
-              className="proj-hero-title"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          <motion.div
+            className="proj-hero"
+            style={{
+              padding: "25px 30px",
+              alignItems: "flex-start",
+            }}
+          >
+            <motion.div
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "2.2rem",
+                fontWeight: "800",
+                color: "#1e293b",
+                borderBottom: "3px solid transparent",
+                borderImage: "linear-gradient(90deg, #0072ff, transparent) 1",
+                display: "inline-block",
+                paddingBottom: "8px",
+                textShadow: "0 4px 15px rgba(0, 114, 255, 0.15)",
+                letterSpacing: "1px",
+              }}
+              initial={{ x: -30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, type: "spring" }}
             >
-              projetos
-            </motion.h2>
+              Meus Projetos
+            </motion.div>
           </motion.div>
 
           {/* ── Project cards ───────────────────────────────── */}
@@ -317,8 +334,8 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
                   transition={{ duration: 0.5 }}
                 />
 
-                {/* Logo + shimmer */}
-                <div className="proj-card-logo-wrap">
+                {/* Image Banner + shimmer */}
+                <div className="proj-card-image-wrap">
                   <motion.div
                     className="proj-card-shimmer"
                     animate={{
@@ -334,8 +351,9 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
                   <img
                     src={logoMap[proj.logo]}
                     alt={proj.title}
-                    className="proj-card-logo"
+                    className="proj-card-image"
                   />
+                  <div className="proj-card-image-overlay" />
                 </div>
 
                 {/* Content */}

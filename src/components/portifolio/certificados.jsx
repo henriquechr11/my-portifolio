@@ -104,8 +104,8 @@ const CertificatesGallery = () => {
             ref={containerRef}
             className="cert-scroll-container"
             style={{
-              display: "flex", gap: "35px", overflowX: "auto", overflowY: "hidden",
-              padding: "30px 10px 40px 10px", flexGrow: 1, alignItems: "center", perspective: "1200px"
+              display: "flex", gap: "25px", overflowX: "auto", overflowY: "hidden",
+              padding: "15px 10px 25px 10px", flexGrow: 1, alignItems: "center", perspective: "1200px"
             }}
             variants={containerVariants}
             initial="hidden"
@@ -115,16 +115,16 @@ const CertificatesGallery = () => {
               <motion.div
                 key={cert.id}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -10 }}
+                whileHover={{ scale: 1.02, y: -5 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSelectedCert(cert)}
                 style={{
-                  minWidth: "280px", height: "380px",
+                  minWidth: "250px", height: "300px",
                   backgroundColor: "#ffffff",
                   borderRadius: "20px",
                   border: "1px solid rgba(0,0,0,0.06)",
                   display: "flex", flexDirection: "column", alignItems: "center",
-                  justifyContent: "space-between", padding: "20px",
+                  justifyContent: "space-between", padding: "18px",
                   cursor: "pointer", flexShrink: 0,
                   boxShadow: "0px 10px 25px rgba(0,0,0,0.05)",
                   transition: "border-color 0.4s ease, box-shadow 0.4s ease"
@@ -143,18 +143,18 @@ const CertificatesGallery = () => {
                     src={cert.img}
                     alt={cert.title}
                     style={{
-                      maxWidth: "100%", maxHeight: "180px",
+                      maxWidth: "100%", maxHeight: "140px",
                       objectFit: "contain",
                       transform: cert.rotate ? "rotate(-90deg)" : "none",
                       filter: "drop-shadow(0px 8px 16px rgba(0,0,0,0.08))"
                     }}
                   />
                 </div>
-                <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "15px" }}>
-                  <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)", width: "80%", margin: "0 0 15px 0" }}></div>
+                <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "12px" }}>
+                  <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)", width: "80%", margin: "0 0 10px 0" }}></div>
                   <p style={{
-                    textAlign: "center", fontSize: "0.95rem", fontWeight: "600",
-                    color: "#334155", lineHeight: "1.4", margin: 0
+                    textAlign: "center", fontSize: "0.85rem", fontWeight: "600",
+                    color: "#334155", lineHeight: "1.3", margin: 0
                   }}>
                     {cert.title}
                   </p>

@@ -5,6 +5,7 @@ import criptohivelogo from "../../assets/logo.png";
 import aluraimg from "../../assets/alura.jpg";
 import loginimg from "../../assets/login.png";
 import users from "../../assets/users.png";
+import gerenciador from "../../assets/gerenciador.png";
 import { FaGithub, FaPlay, FaExternalLinkAlt } from "react-icons/fa";
 import { bringToFront } from "./modalZ";
 import {
@@ -49,7 +50,7 @@ const projects = [
       "Uma Task Manager é a solução ideal para organizar suas atividades com praticidade e eficiência.",
     tags: ["React", "Tailwind CSS"],
     image: null,
-    logo: "login",
+    logo: "gerenciador",
     color: "#362056",
     github: "https://github.com/henriquechr11/Gerenciador-de-tarefas",
     demo: "https://gerenciador-de-tarefas-hazel.vercel.app/",
@@ -86,6 +87,7 @@ const logoMap = {
   alura: aluraimg,
   login: loginimg,
   users: users,
+  gerenciador: gerenciador,
 };
 
 /* ── framer variants ──────────────────────────────────────── */

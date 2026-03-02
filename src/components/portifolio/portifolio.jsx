@@ -21,13 +21,13 @@ const Portifolio = () => {
   const hoverTimer = useRef(null);
 
   function abrirModal(id) {
-    document.getElementById(id).style.display = "block";
-    modal.classList.add("mostrar");
+    const el = document.getElementById(id);
+    if (el) el.style.display = "block";
   }
 
   function fecharModal(id) {
-    document.getElementById(id).style.display = "none";
-    modal.classList.remove("mostrar");
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
   }
 
   function handleMouseEnter(id) {

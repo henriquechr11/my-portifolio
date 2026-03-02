@@ -23,7 +23,7 @@ const projects = [
     title: "CriptoHive",
     description:
       "Plataforma de rastreamento de criptomoedas em tempo real com gráficos interativos e alertas personalizados.",
-    tags: ["React", "API", "Charts"],
+    tags: ["Python", "API Coin Gecko", "Flask"],
     image: null,
     logo: "criptohive",
     color: "#0a1c3a",
@@ -35,7 +35,7 @@ const projects = [
     title: "Alura Studies",
     description:
       "Aplicação de gerenciamento de estudos com cronômetro Pomodoro e controle de tarefas diárias.",
-    tags: ["React", "TypeScript", "CSS"],
+    tags: ["Python", "Streamlit"],
     image: null,
     logo: "alura",
     color: "#7e7f81",
@@ -44,10 +44,10 @@ const projects = [
   },
   {
     id: 3,
-    title: "Login System",
+    title: "Task Manager",
     description:
-      "Sistema de autenticação completo com registro, login e recuperação de senha com JWT.",
-    tags: ["Node.js", "JWT", "MongoDB"],
+      "Uma Task Manager é a solução ideal para organizar suas atividades com praticidade e eficiência. Crie, acompanhe e conclua tarefas de forma simples, mantendo seus projetos sob controle e sua produtividade sempre em alta.",
+    tags: ["React", "CSS"],
     image: null,
     logo: "login",
     color: "#362056",
@@ -66,7 +66,20 @@ const projects = [
     github: "https://github.com/henriquechr11",
     demo: "#",
   },
+  {
+    id: 5,
+    title: "Login System",
+    description:
+      "Sistema de autenticação completo com registro, login e recuperação de senha com JWT.",
+    tags: ["Node.js", "JWT", "MongoDB"],
+    image: null,
+    logo: "login",
+    color: "#362056",
+    github: "https://github.com/henriquechr11",
+    demo: "#",
+  },
 ];
+
 
 const logoMap = {
   criptohive: criptohivelogo,

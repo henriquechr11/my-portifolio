@@ -444,7 +444,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
                     marginBottom: 10,
                   }}
                 >
-                  {"// architecture.map"}
+                  {"// Mapa das minhas //"}
                 </div>
                 <h2
                   style={{
@@ -457,7 +457,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Skill Stack
+                  Habilidades
                 </h2>
                 <p
                   style={{
@@ -467,7 +467,7 @@ export default function FloatingModal({ onClose, origin = { x: 0, y: 0 } }) {
                     marginTop: 8,
                   }}
                 >
-                  Hover a layer to trace the data flow
+                  Passe o mouse sobre uma camada para rastrear o fluxo de dados.
                 </p>
               </motion.div>
 

@@ -11,13 +11,13 @@ const layers = [
     sublabel: " ",
     color: "#0ea5e9", // Lighter blue for better contrast
     glow: "rgba(14,165,233,0.35)",
-    skills: ["React", "HTML", "CSS", "JavaScript"],
+    skills: ["React", "HTML", "CSS", "JavaScript", "TailWind CSS"],
     icon: "◈",
   },
   {
     id: "state",
     label: "Ferramentas",
-    sublabel: "Motion & Data Flow",
+    sublabel: " ",
     color: "#a78bfa",
     glow: "rgba(167,139,250,0.35)",
     skills: ["UX/UI", "API", "Git" , "GitHub", "Figma", "Trello" , "Google Workspace"],
@@ -26,7 +26,7 @@ const layers = [
   {
     id: "backend",
     label: "API e Backend",
-    sublabel: "Logic & Business Rules",
+    sublabel: " ",
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
     skills: ["Python", "C#", "Flask" , "Dart" ,"n8n"],
@@ -35,7 +35,7 @@ const layers = [
   {
     id: "mobile",
     label: "Mobile",
-    sublabel: "Cross-platform Native",
+    sublabel: " ",
     color: "#fb923c",
     glow: "rgba(251,146,60,0.35)",
     skills: ["Flutter", "Kotlin", "Swift"],
@@ -44,7 +44,7 @@ const layers = [
   {
     id: "database",
     label: "Banco de Dados",
-    sublabel: "Persistence & Storage",
+    sublabel: " ",
     color: "#f472b6",
     glow: "rgba(244,114,182,0.35)",
     skills: ["MySQL", "Supabase"],

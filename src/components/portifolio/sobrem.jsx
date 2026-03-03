@@ -29,7 +29,7 @@ const layers = [
     sublabel: "Logic & Business Rules",
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
-    skills: ["Python", "C#", "Flask"],
+    skills: ["Python", "C#", "Flask" ,"n8n"],
     icon: "⬢",
   },
   {

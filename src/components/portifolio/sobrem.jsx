@@ -8,7 +8,7 @@ const layers = [
   {
     id: "frontend",
     label: "Frontend",
-    sublabel: "Interface & Experience",
+    sublabel: " ",
     color: "#0ea5e9", // Lighter blue for better contrast
     glow: "rgba(14,165,233,0.35)",
     skills: ["React", "HTML", "CSS", "JavaScript"],

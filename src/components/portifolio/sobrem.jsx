@@ -20,7 +20,7 @@ const layers = [
     sublabel: "Motion & Data Flow",
     color: "#a78bfa",
     glow: "rgba(167,139,250,0.35)",
-    skills: ["UX/UI", "API", "Git"],
+    skills: ["UX/UI", "API", "Git" , "GitHub"],
     icon: "⬡",
   },
   {

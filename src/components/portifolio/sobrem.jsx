@@ -7,7 +7,7 @@ import { bringToFront } from "./modalZ";
 const layers = [
   {
     id: "frontend",
-    label: "Frontend Layer",
+    label: "Frontend",
     sublabel: "Interface & Experience",
     color: "#0ea5e9", // Lighter blue for better contrast
     glow: "rgba(14,165,233,0.35)",
@@ -25,7 +25,7 @@ const layers = [
   },
   {
     id: "backend",
-    label: "API & Backend Layer",
+    label: "API e Backend",
     sublabel: "Logic & Business Rules",
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
@@ -34,7 +34,7 @@ const layers = [
   },
   {
     id: "mobile",
-    label: "Mobile Layer",
+    label: "Mobile",
     sublabel: "Cross-platform Native",
     color: "#fb923c",
     glow: "rgba(251,146,60,0.35)",
@@ -43,7 +43,7 @@ const layers = [
   },
   {
     id: "database",
-    label: "Database Layer",
+    label: "Banco de Dados",
     sublabel: "Persistence & Storage",
     color: "#f472b6",
     glow: "rgba(244,114,182,0.35)",

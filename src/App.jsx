@@ -3,13 +3,16 @@ import Portifolio from "./components/portifolio/portifolio";
 import "./App.css";
 
 function App() {
-  const [showFsPrompt, setShowFsPrompt] = useState(true);
+  const [showFsPrompt, setShowFsPrompt] = useState(() => {
+    return localStorage.getItem("fullscreenPreference") === null;
+  });
 
   const enterFullscreen = async () => {
     const el = document.documentElement;
     try {
       if (el.requestFullscreen) await el.requestFullscreen();
       else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+      localStorage.setItem("fullscreenPreference", "true");
     } catch (err) {
       console.warn("Fullscreen request failed:", err);
     } finally {
@@ -18,6 +21,7 @@ function App() {
   };
 
   const skipFullscreen = () => {
+    localStorage.setItem("fullscreenPreference", "false");
     setShowFsPrompt(false);
   };
 

@@ -16,7 +16,7 @@ const layers = [
   },
   {
     id: "state",
-    label: "Animation & State",
+    label: "Ferramentas",
     sublabel: "Motion & Data Flow",
     color: "#a78bfa",
     glow: "rgba(167,139,250,0.35)",

@@ -29,7 +29,7 @@ const layers = [
     sublabel: "Logic & Business Rules",
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
-    skills: ["Python", "C#", "Flask" ,"n8n"],
+    skills: ["Python", "C#", "Flask" , "Dart" ,"n8n"],
     icon: "⬢",
   },
   {
@@ -38,7 +38,7 @@ const layers = [
     sublabel: "Cross-platform Native",
     color: "#fb923c",
     glow: "rgba(251,146,60,0.35)",
-    skills: ["Dart", "Flutter", "Kotlin", "Swift"],
+    skills: ["Flutter", "Kotlin", "Swift"],
     icon: "◉",
   },
   {

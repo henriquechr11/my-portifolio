@@ -122,11 +122,11 @@ function TiltCard({ children, project }) {
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [3, -3]), {
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), {
     stiffness: 200,
     damping: 20,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-3, 3]), {
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), {
     stiffness: 200,
     damping: 20,
   });
